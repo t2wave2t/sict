@@ -1,0 +1,69 @@
+@extends('gv.master')
+@section('content')
+<!-- page content -->
+  <!-- top tiles -->
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Giáo trình</h2>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br />
+            @include('gv.blocks.error')
+            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="" method="POST"  enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="giaotrinh">Tên giáo trình <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="giao-trinh" name="giaotrinh" required="required" class="form-control col-md-7 col-xs-12" value="{!! old('giaotrinh',isset($giaotrinh) ? $giaotrinh['tengiaotrinh'] : null) !!}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="hocphan">Học phần
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="hocphan" name="hocphan" required="required" class="form-control col-md-7 col-xs-12" value="{!! old('hocphan',isset($giaotrinh) ? $giaotrinh['hocphan'] : null) !!}" />
+                    </div>
+                </div>
+                <!-- editor -->
+
+                <div class="form-group">
+                    <label for="mota" class="control-label col-md-3 col-sm-3 col-xs-12">Mô tả</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <textarea class="resizable_textarea form-control" placeholder="Mô tả về giáo trình" name="mota">{!! old('mota',isset($giaotrinh) ? $giaotrinh['mota'] : null) !!}</textarea>
+                    </div>
+                </div>
+
+                <!-- end editor -->
+                <?php $link = asset('public/upload/gv/giaotrinh/'.$giaotrinh['link']) ?>
+                <div class="form-group">
+                    <label for="file-curent" class="control-label col-md-3 col-sm-3 col-xs-12">Giáo trình hiện tại: <span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <span> <?php echo $giaotrinh['link'] ?>  </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="files" class="control-label col-md-3 col-sm-3 col-xs-12">Giáo trình mới <span class="required">*</span></label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="files" class="form-control col-md-7 col-xs-12" type="file" name="files" required="required" >
+                    </div>
+                </div>
+
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" class="btn btn-success">Upload</button>
+                        <button class="btn btn-primary" type="reset">Nhập lại</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+  <!-- /top tiles -->
+<!-- /page content -->
+@stop
